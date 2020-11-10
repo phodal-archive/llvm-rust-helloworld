@@ -1,10 +1,14 @@
 # Rust LLVM hello, world
 
+LLVM code see in [main.ll](main.ll)
+
+## Setup
+
+## Install LLVM
+
 ```
 brew install cmake ninja
 ```
-
-## Install LLVM
 
 ### remote
 

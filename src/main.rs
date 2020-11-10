@@ -34,6 +34,8 @@ impl<'a, 'ctx> Compiler<'a, 'ctx> {
         let i32_type = self.emit_printf_call(&"hello, world!\n", "hello");
         self.builder.build_return(Some(&i32_type.const_int(0, false)));
 
+        // println!("{:?}", self.module.print_to_file(main.ll));
+        self.module.print_to_file("main.ll");
         self.execute()
     }
 
