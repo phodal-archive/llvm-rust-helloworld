@@ -34,8 +34,7 @@ impl<'a, 'ctx> Compiler<'a, 'ctx> {
         let i32_type = self.emit_printf_call(&"hello, world!\n", "hello");
         self.builder.build_return(Some(&i32_type.const_int(0, false)));
 
-        // println!("{:?}", self.module.print_to_file(main.ll));
-        self.module.print_to_file("main.ll");
+        let _result = self.module.print_to_file("main.ll");
         self.execute()
     }
 
@@ -43,9 +42,13 @@ impl<'a, 'ctx> Compiler<'a, 'ctx> {
         let i32_type = self.context.i32_type();
         let str_type = self.context.i8_type().ptr_type(AddressSpace::Generic);
         let printf_type = i32_type.fn_type(&[str_type.into()], true);
-        let printf = self.module.add_function("printf", printf_type, Some(Linkage::External));
+
+        // `printf` is same to `puts`
+        let printf = self.module.add_function("puts", printf_type, Some(Linkage::External));
+
         let pointer_value = self.emit_global_string(hello_str, name);
         self.builder.build_call(printf, &[pointer_value.into()], "");
+
         i32_type
     }
 
@@ -57,8 +60,8 @@ impl<'a, 'ctx> Compiler<'a, 'ctx> {
 
         let compiled_fn = match maybe_fn {
             Ok(f) => f,
-            Err(_) => {
-                panic!();
+            Err(err) => {
+                panic!("{:?}", err);
             }
         };
 
