@@ -1,6 +1,9 @@
 # Rust LLVM hello, world
 
-LLVM code see in [main.ll](main.ll)
+0. Rust 1.39+ + LLVM 10.0
+1. use [llvmenv](https://github.com/termoshtt/llvmenv) to Manage multiple LLVM/Clang builds
+2. Rust LLVM wrapper use [inkwell](https://github.com/TheDan64/inkwell)
+3. generated LLVM  IR code see in [main.ll](main.ll)
 
 ## Setup
 
