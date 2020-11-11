@@ -28,6 +28,8 @@
 
 ### Struct
 
+![Mapping](docs/images/gep-examples.png)
+
 In C code:
 
 ```c
